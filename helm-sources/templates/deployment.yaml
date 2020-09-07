@@ -21,6 +21,11 @@ spec:
     spec:
       containers:
       - env:
+        - name: DATASERVICE_HARVESTER_BASE_URI
+          valueFrom:
+            secretKeyRef:
+              name: commonurl-{{ required "Missing value NAMESPACE" .Values.NAMESPACE }}
+              key: FDK_DATASERVICE_HARVESTER_BASE_URI
         image: {{ required "Missing value DOCKER_IMAGE_NAME" .Values.DOCKER_IMAGE_NAME }}
         imagePullPolicy: Always
         name: fdk-dataset-harvester-etl
