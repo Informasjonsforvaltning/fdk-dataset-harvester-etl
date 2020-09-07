@@ -4,4 +4,3 @@
 
 ##fdk-dataset-harvester-etl
 FDK_DATASET_HARVESTER_ETL_MEMORY: "1000Mi"
-NAMESPACE: prod
