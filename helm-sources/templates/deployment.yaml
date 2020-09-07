@@ -21,11 +21,11 @@ spec:
     spec:
       containers:
       - env:
-        image: {{ required "Missing value DATASET_ETL_IMAGE" .Values.DATASET_ETL_IMAGE }}
+        image: {{ required "Missing value DOCKER_IMAGE_NAME" .Values.DOCKER_IMAGE_NAME }}
         imagePullPolicy: Always
         name: fdk-dataset-harvester-etl
         resources:
           requests:
-            memory: {{ required "Missing value FDK_DATASET_ETL_MEMORY" .Values.FDK_DATASET_ETL_MEMORY | quote }}
+            memory: {{ required "Missing value FDK_DATASET_HARVESTER_ETL_MEMORY" .Values.FDK_DATASET_HARVESTER_ETL_MEMORY | quote }}
       restartPolicy: Always
 status: {}
