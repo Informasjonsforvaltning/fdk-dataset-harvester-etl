@@ -19,7 +19,7 @@ def transform(inputfile, inputfile_meta, failed_path):
 
     for dataset_key in datasets:
         if dataset_key not in datasets_meta:
-            failed_transform.append(datasets[dataset_key]["_id"])
+            failed[dataset_key] = (datasets[dataset_key]["_id"])
         else:
             transformed[datasets[dataset_key]["_id"]] = fields_to_change(datasets[dataset_key])
 
