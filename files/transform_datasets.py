@@ -17,11 +17,11 @@ def transform(inputfile, inputfile_meta):
     transformed = {}
     failed = {}
     failed_transform = args.outputdirectory + "failed_transform.json"
-    for dataset in datasets:
-        if dataset["_id"] not in datasets_meta:
-            failed_transform.append(dataset["_id"])
+    for dataset_key in datasets:
+        if dataset_key not in datasets_meta:
+            failed_transform.append(datasets[dataset_key]["_id"])
         else:
-            transformed[dataset["_id"]] = fields_to_change(dataset)
+            transformed[datasets[dataset_key]["_id"]] = fields_to_change(datasets[dataset_key])
 
     with open(failed_transform, 'w', encoding="utf-8") as failed_file:
         json.dump(failed, failed_file, ensure_ascii=False, indent=4)
