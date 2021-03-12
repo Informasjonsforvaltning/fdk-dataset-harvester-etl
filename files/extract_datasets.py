@@ -42,7 +42,7 @@ with open(args.outputdirectory + 'mongo_datasetsMeta.json', 'w', encoding="utf-8
 # Old catalogs
 db = connection.datasetHarvester
 dict_list = list(db.catalog.find())
-catalogs = []
+catalogs = {}
 for id_dict in dict_list:
     catalog = {}
     id_str = id_dict["_id"]
