@@ -6,8 +6,9 @@ A successful ETL requires the following sequence:
 1. Update fdkID (ETL with TO_BE_UPDATED = fdkID)
 2. remove turtle data from mongodb for dataset-harvester
 3. restart harvester
-4. update dates (T+L with TO_BE_UPDATE = dates)
+4. update dates (T+L with TO_BE_UPDATED = dates)
 5. post to harvester update/meta
+6. fulltext ingest (if next harvest isn't imminent)
 
 Change env variable: export TO_BE_UPDATED = "value"
 
