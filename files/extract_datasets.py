@@ -37,7 +37,7 @@ for id_dict in dict_list:
     datasets.append(id_dict["_id"])
 
 with open(args.outputdirectory + 'mongo_datasetsMeta.json', 'w', encoding="utf-8") as outfile:
-    json.dump(dataset, outfile, ensure_ascii=False, indent=4)
+    json.dump(datasets, outfile, ensure_ascii=False, indent=4)
 
 # Old catalogs
 db = connection.datasetHarvester
