@@ -42,7 +42,7 @@ def fields_to_change(dataset):
 
 
 inputfileName = args.outputdirectory + "mongo_datasets.json"
-inputfileNameMeta = args.outputdirectory + "mongo_datasets_meta.json"
+inputfileNameMeta = args.outputdirectory + "mongo_datasetsMeta.json"
 outputfileName = args.outputdirectory + "datasets_transformed.json"
 with open(outputfileName, 'w', encoding="utf-8") as outfile:
     json.dump(transform(inputfileName, inputfileNameMeta), outfile, ensure_ascii=False, indent=4)
