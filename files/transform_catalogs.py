@@ -16,11 +16,12 @@ def transform(inputfile, inputfile2):
     transformed_catalogs = {}
     print("Total number of extracted catalogs: " + str(len(catalogs)))
     for catalog_key in catalogs:
-        new_id = str_split(catalogs[catalog_key].get("uri"))
-        to_be_transformed = catalogs_meta.get(catalog_key)
+        old_id = catalogs[catalog_key].get("uri")
+        new_id = str_split(old_id)
+        to_be_transformed = catalogs_meta.get(old_id)
         if to_be_transformed:
             transformed = transform_catalog(to_be_transformed, new_id)
-            transformed_catalogs[catalogs[catalog_key].get("uri")] = transformed
+            transformed_catalogs[old_id] = transformed
     return transformed_catalogs
 
 
