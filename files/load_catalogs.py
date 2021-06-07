@@ -19,5 +19,5 @@ with open(args.outputdirectory + 'catalogs_transformed.json') as catalogs_file:
         if mongo_id == to_be_updated.get("_id"):
             print("Not updating identical ids: " + mongo_id)
         else:
-            print(db.catalogMeta.find_one_and_update({'_id': mongo_id},  {'$set': to_be_updated}))
-
+            print(db.catalogMeta.insert_one(to_be_updated))
+            print(db.catalogMeta.delete_one(mongo_id))

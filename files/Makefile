@@ -4,6 +4,7 @@ all: extract transform load
 extract:
 	echo "Extracting catalogs...."
 	python3 ./extract_catalogs.py -o ./tmp/
+	python3 ./extract_catalogsMeta.py -o ./tmp/
 
 transform:
 	echo "Transforming catalogs...."
