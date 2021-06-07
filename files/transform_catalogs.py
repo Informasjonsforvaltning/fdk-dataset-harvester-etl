@@ -17,7 +17,7 @@ def transform(inputfile):
     for catalog_key in catalogs:
         catalogs[catalog_key].get("_id")
         transformed_uri = transform_uri(catalogs[catalog_key].get("uri"))
-        transformed_catalogs[catalog_key] = {"_id": transformed_uri}
+        transformed_catalogs[catalogs[catalog_key].get("uri")] = {"_id": transformed_uri}
     return transformed_catalogs
 
 
