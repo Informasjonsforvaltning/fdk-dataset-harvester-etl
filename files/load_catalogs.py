@@ -14,10 +14,13 @@ db = connection.datasetHarvester
 with open(args.outputdirectory + 'catalogs_transformed.json') as catalogs_file:
     transformed_json = json.load(catalogs_file)
 
+    total_updated = 0
+    total_skipped = 0
     for mongo_id in transformed_json:
         to_be_updated = transformed_json[mongo_id]
         if mongo_id == to_be_updated.get("_id"):
             print("Not updating identical ids: " + mongo_id)
+            total_skipped += 1
         else:
             print("Inserting ID: " + to_be_updated.get("_id"))
             insert_result = db.catalogMeta.insert_one(to_be_updated)
@@ -25,3 +28,6 @@ with open(args.outputdirectory + 'catalogs_transformed.json') as catalogs_file:
             print("Deleting ID: " + mongo_id)
             delete_result = db.catalogMeta.delete_one({"_id": mongo_id})
             print("Documents deleted: " + str(delete_result.deleted_count))
+            total_updated += 1
+    print("Total number of catalogs updated: " + str(total_updated))
+    print("Total number of catalogs skipped: " + str(total_skipped))
