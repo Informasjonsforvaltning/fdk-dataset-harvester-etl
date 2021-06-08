@@ -11,8 +11,8 @@ connection = MongoClient(
     f"""mongodb://{os.environ['MONGO_USERNAME']}:{os.environ['MONGO_PASSWORD']}@mongodb:27017/datasetHarvester?authSource=admin&authMechanism=SCRAM-SHA-1""")
 db = connection.datasetHarvester
 
-with open(args.outputdirectory + 'catalogs_transformed.json') as catalogs_file:
-    transformed_json = json.load(catalogs_file)
+with open(args.outputdirectory + 'datasets_transformed.json') as datasets_file:
+    transformed_json = json.load(datasets_file)
 
     total_updated = 0
     total_skipped = 0
@@ -23,11 +23,11 @@ with open(args.outputdirectory + 'catalogs_transformed.json') as catalogs_file:
             total_skipped += 1
         else:
             print("Inserting ID: " + to_be_updated.get("_id"))
-            insert_result = db.catalogMeta.insert_one(to_be_updated)
+            insert_result = db.datasetMeta.insert_one(to_be_updated)
             print("Result ID: " + insert_result.inserted_id)
             print("Deleting ID: " + mongo_id)
-            delete_result = db.catalogMeta.delete_one({"_id": mongo_id})
+            delete_result = db.datasetMeta.delete_one({"_id": mongo_id})
             print("Documents deleted: " + str(delete_result.deleted_count))
             total_updated += 1
-    print("Total number of catalogs updated: " + str(total_updated))
-    print("Total number of catalogs skipped: " + str(total_skipped))
+    print("Total number of datasets updated: " + str(total_updated))
+    print("Total number of datasets skipped: " + str(total_skipped))

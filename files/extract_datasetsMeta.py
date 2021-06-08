@@ -10,12 +10,12 @@ connection = MongoClient(
     f"""mongodb://{os.environ['MONGO_USERNAME']}:{os.environ['MONGO_PASSWORD']}@mongodb:27017/datasetHarvester?authSource=admin&authMechanism=SCRAM-SHA-1""")
 
 db = connection.datasetHarvester
-dict_list = list(db.catalogMeta.find())
-catalogs = {}
+dict_list = list(db.datasetMeta.find())
+datasets = {}
 for id_dict in dict_list:
     id_str = id_dict["_id"]
-    catalogs[id_str] = id_dict
-print("Total number of extracted catalogs: " + str(len(catalogs)))
+    datasets[id_str] = id_dict
+print("Total number of extracted datasets: " + str(len(datasets)))
 
-with open(args.outputdirectory + 'mongo_catalogMeta.json', 'w', encoding="utf-8") as outfile:
-    json.dump(catalogs, outfile, ensure_ascii=False, indent=4)
+with open(args.outputdirectory + 'mongo_datasetMeta.json', 'w', encoding="utf-8") as outfile:
+    json.dump(datasets, outfile, ensure_ascii=False, indent=4)
