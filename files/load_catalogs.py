@@ -24,4 +24,4 @@ with open(args.outputdirectory + 'catalogs_transformed.json') as catalogs_file:
             print("Result ID: " + insert_result.inserted_id)
             print("Deleting ID: " + mongo_id)
             delete_result = db.catalogMeta.delete_one({"_id": mongo_id})
-            print("Documents deleted: " + delete_result.deleted_count)
+            print("Documents deleted: " + str(delete_result.deleted_count))
